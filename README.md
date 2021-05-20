@@ -6,3 +6,4 @@ The db.py file is used to create the database where the schema is defined in sch
 
 <h3>Creating the database</h3>
 createdb.py creates the initial database and adds two example enteries outside of the application.
+  

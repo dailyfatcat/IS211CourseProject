@@ -36,7 +36,3 @@ def init_db():
                    )
     db.execute("INSERT INTO authors (author_name) VALUES (?)", ("Sam",))
     db.execute("INSERT INTO created (author_id, post_id) VALUES (?, ?)", (1, 1))
-
-
-if __name__ == '__main__':
-    init_db()
