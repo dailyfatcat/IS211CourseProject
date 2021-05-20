@@ -1,10 +1,7 @@
 import sqlite3
-import click
 from flask import current_app, g
-from flask.cli import with_appcontext
-import sys
-DATABASE = 'hw13.db'
-#SCHEMA = r"C:\Users\Sarah\PycharmProjects\schema.sql"
+
+DATABASE = 'blogs.db'
 
 def get_db():
     """Connect to the application's configured database. The connection
@@ -35,18 +32,10 @@ def init_db():
     with current_app.open_resource('schema.sql', mode='r') as f:
         db.executescript(f.read())
 
-
-@click.command('init-db')
-@with_appcontext
-def init_db_command():
-    """Clear existing data and create new tables."""
-    init_db()
-    click.echo("Initialized the database.")
+    db.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+            ('Example Post', 'Here is an Example')
+            )
+    db.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+                ('Another Example Post', 'Content for the second post'))
 
 
-def init_app(app):
-    """Register database functions with the Flask app. This is called by
-    the application factory.
-    """
-    app.teardown_appcontext(close_db)
-    app.cli.add_command(init_db_command)
