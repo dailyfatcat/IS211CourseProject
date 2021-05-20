@@ -16,5 +16,5 @@ CREATE TABLE authors (
 
 CREATE TABLE created (
     author_id INTEGER NOT NULL,
-    post_ID INTEGER NOT NULL
+    post_id INTEGER NOT NULL
 );

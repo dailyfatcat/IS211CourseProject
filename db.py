@@ -31,11 +31,12 @@ def init_db():
 
     with current_app.open_resource('schema.sql', mode='r') as f:
         db.executescript(f.read())
-
     db.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Example Post', 'Here is an Example')
-            )
-    db.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-                ('Another Example Post', 'Content for the second post'))
+                   ('Example Post', 'Here is an Example')
+                   )
+    db.execute("INSERT INTO authors (author_name) VALUES (?)", ("Sam",))
+    db.execute("INSERT INTO created (author_id, post_id) VALUES (?, ?)", (1, 1))
 
 
+if __name__ == '__main__':
+    init_db()
