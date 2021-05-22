@@ -16,11 +16,12 @@
 <H1>Create a Blog Entry</H1>
 
 <form action="/add"  method="post" id="blogform">
-    Title: <input type = "text" name="title">
+    Title: <input type = "text" name="title" required>
 
     <br>
     <br>
-    <textarea rows="20" cols="60" name="content" form="blogform">Enter blog contents here</textarea>
+    <textarea rows="20" cols="60" name="content" form="blogform" required placeholder="Enter blog contents here"></textarea>
+
     <br>
     <input type="submit">
 </form>
