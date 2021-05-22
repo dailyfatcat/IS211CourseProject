@@ -41,6 +41,7 @@ def index():
 
 @app.route('/dashboard', methods=["POST", "GET"])
 def dashboard():
+    '''Dashboard Page'''
     if not session.get('username'):
         return (redirect(url_for("login")))
     '''Part III Dashboard: View students and quizzes in the class'''
@@ -54,6 +55,7 @@ def dashboard():
 
 @app.route('/edit/<int:postID>')
 def edit(postID):
+    '''Editing the blog post, get the blog posts'''
     if not session.get('username'):
         return (redirect(url_for("login")))
     db = get_db()
@@ -65,6 +67,7 @@ def edit(postID):
 
 @app.route('/update', methods=["POST", "Get"])
 def updatepost():
+    '''Updating the blog post, update the blog posts'''
     if not session.get('username'):
         return (redirect(url_for("login")))
     title = request.form.get('title')
@@ -79,6 +82,7 @@ def updatepost():
 
 @app.route('/add', methods=["POST", "Get"])
 def add():
+    '''Add a new blog post'''
     if not session.get('username'):
         return (redirect(url_for("login")))
     title = request.form.get('title')
@@ -93,6 +97,7 @@ def add():
 
 @app.route('/delete/<int:postID>')
 def delPost(postID):
+    '''Delete a blog post'''
     if not session.get('username'):
         return (redirect(url_for("login")))
     db = get_db()
@@ -104,13 +109,20 @@ def delPost(postID):
 
 @app.route('/<int:postID>')
 def post(postID):
+    '''Display a blog post'''
     db = get_db()
-    blog = []
-
     post = g.db.execute("SELECT * FROM posts WHERE post_id =?", (postID,)).fetchone()
     author = g.db.execute("SELECT authors.author_id, authors.author_name FROM created INNER JOIN authors on created.author_id == authors.author_id WHERE post_id =?", (postID,)).fetchone()
     page = Markup('<head><link rel="stylesheet" href="static/styles.css"><meta charset="UTF-8"></head>'+ "<body><h1>" + post[1] + "</h1><p>Created On: " + post[2] + "</p><p>Written By: " + author[1] + "</p><br>" + post[3] + "</body>")
     return render_template('post.html', post=page)
+
+
+@app.route('/create_blog', methods=['GET', 'POST'])
+def create_blog():
+    '''Create a blog post'''
+    if not session.get('username'):
+        return (redirect(url_for("login")))
+    return render_template('create_blog.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -119,15 +131,9 @@ def login():
     return(render_template("login.html"))
 
 
-@app.route('/create_blog', methods=['GET', 'POST'])
-def create_blog():
-    if not session.get('username'):
-        return (redirect(url_for("login")))
-    return render_template('create_blog.html')
-
-
 @app.route('/validate', methods=['POST', 'GET'])
 def validate():
+    '''Validate the Login'''
     username = request.form['username']
     password = request.form['password']
     if username == "sam" and password == "password":
