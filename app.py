@@ -34,6 +34,7 @@ def index():
     blog_posts = g.db.execute("SELECT posts.title, posts.pub_date, posts.content, authors.author_name, posts.post_id FROM created "
                                "INNER JOIN posts on created.post_id == posts.post_id "
                                "INNER JOIN authors on created.author_id == authors.author_id "
+                              "WHERE published == 1 "
                               "ORDER BY posts.pub_date DESC").fetchall()
     return render_template('index.html', blogs=blog_posts)
 
@@ -45,7 +46,7 @@ def dashboard():
         return (redirect(url_for("login")))
     '''Part III Dashboard: View students and quizzes in the class'''
     db = get_db()
-    blog_posts = g.db.execute("SELECT posts.title, posts.pub_date, posts.content, authors.author_name, posts.post_id FROM created "
+    blog_posts = g.db.execute("SELECT posts.title, posts.pub_date, posts.content, authors.author_name, posts.post_id, posts.published FROM created "
                                "INNER JOIN posts on created.post_id == posts.post_id "
                                "INNER JOIN authors on created.author_id == authors.author_id "
                               "ORDER BY posts.pub_date DESC").fetchall()
@@ -62,6 +63,28 @@ def edit(postID):
                                "INNER JOIN posts on created.post_id == posts.post_id "
                                "INNER JOIN authors on created.author_id == authors.author_id WHERE created.post_id = ?", (postID,)).fetchone()
     return render_template('edit.html', post=post)
+
+
+@app.route('/unpublish/<int:postID>')
+def unpublish(postID):
+    '''Extra Credit: Unpublish a blog post'''
+    if not session.get('username'):
+        return (redirect(url_for("login")))
+    db = get_db()
+    g.db.execute("UPDATE posts SET published = 0 WHERE post_id =?", (postID,))
+    g.db.commit()
+    return (redirect(url_for("dashboard")))
+
+
+@app.route('/publish/<int:postID>')
+def publish(postID):
+    '''Extra Credit:Publish a blog post'''
+    if not session.get('username'):
+        return (redirect(url_for("login")))
+    db = get_db()
+    g.db.execute("UPDATE posts SET published = 1 WHERE post_id =?", (postID,))
+    g.db.commit()
+    return (redirect(url_for("dashboard")))
 
 
 @app.route('/update', methods=["POST", "Get"])

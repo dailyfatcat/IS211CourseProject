@@ -29,6 +29,11 @@ This calls the update route which updates the posts content and title.
 The error handling is handled in the HTML, the user is required to enter some content, the fields cannot be left blank. </br>
 The add route and create_blog allows for the new blog posts to be added to the database, updating the posts and created tables in the database. Retrieves the content from the HTML form, where the error handling is also considered ensuring the user must enter some text.</br>
 The delPost route search the database for the post that the user has clicked the button for. </br>
-The route postid, queries the database to get the information. needed to display the blog post</br>
+The route postid, queries the database to get the information needed to display the blog post</br>
+<h4>Extra Credit:</h4>
+<strong>PermaLinks</strong> Each blog post has its own link, which can be clicked on to view the blog posts. </br>
+<strong>Publish</strong> Two routes were created, publish and unpublished so the user can decide to publish or unpublish the posts. This updates the published value in the database. 
+A Status is displayed so the user can tell if there post if published or not </br>
+
 
 

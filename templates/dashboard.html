@@ -23,6 +23,9 @@
     <th>View</th>
     <th>Edit</th>
     <th>Delete</th>
+    <th>Unpublish</th>
+    <th>Publish</th>
+    <th>Status</th>
 </tr>
 {% for posts in blogs %}
 <tr>
@@ -30,6 +33,15 @@
     <td><button onclick="document.location='/{{posts[4]}}'">View</button></td>
     <td><button onclick="document.location='edit/{{posts[4]}}'">Edit</button></td>
     <td><button onclick="document.location='delete/{{posts[4]}}'">Delete</button></td>
+
+    <td><button onclick="document.location='unpublish/{{posts[4]}}'">Unpublish</button></td>
+    <td><button onclick="document.location='publish/{{posts[4]}}'">publish</button></td>
+    {% if  posts[5] %}
+    <td>Published</td>
+    {% endif %}
+    {% if not posts[5] %}
+    <td>Unpublished</td>
+    {% endif %}
 
 </tr>
     </br>
