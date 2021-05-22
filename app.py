@@ -9,7 +9,6 @@ from flask import Flask, redirect, session, url_for, request, flash
 from markupsafe import escape
 from flask import current_app, g, render_template
 from flask.cli import with_appcontext
-from db import get_db, init_db
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'

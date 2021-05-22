@@ -2,7 +2,8 @@
 
 <h2>Database</h2> The database has three tables, there is a table for the blog posts and a table for authors. 
 Since many authors can make many blog posts the data is normalized and there is a third table containing the post id and author ids, this third table normalizes the data by removing repetitive lines.
-
+To complete the extra credit, there is an integer called "published" by default the blog entry is published.
+If the user does not want to publish the blog, they can click the unpublish button to change the status.
 
 
 <h3>Creating the database</h3>
