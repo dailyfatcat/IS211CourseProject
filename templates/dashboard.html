@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="static/styles.css">
     <meta charset="UTF-8">
+
     <title>Blog Dashboard</title>
 
     <style>
@@ -14,7 +16,7 @@
 </head>
 
 <body>
-<H1>Blog Posts</H1>
+<h1>Blog Posts</h1>
 <table>
 <tr>
     <th>Title:</th>
@@ -34,10 +36,8 @@
 {% endfor %}
 </table>
 
-
-
-<H2>Blog Creation</H2>
-<a href="{{ url_for('create_blog') }}">Add Blog Entry</a>
+<h2>Blog Creation</h2>
+<button onclick="document.location='create_blog'">Add a Blog Entry</button>
 </br>
 </body>
 </html>

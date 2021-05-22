@@ -1,0 +1,8 @@
+body {
+  background-color: AliceBlue;
+}
+
+h1,h2,h3 {
+  color: DarkSlateBlue;
+  margin-left: 20px;
+}
