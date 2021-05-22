@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog Post</title>
+
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        td {text-align:right;}
+    </style>
+</head>
+<body>
+<H1>Create a Blog Entry</H1>
+
+<form action="/add"  method="post" id="blogform">
+    Title: <input type = "text" name="title">
+
+    <br>
+    <br>
+    <textarea rows="20" cols="60" name="content" form="blogform">Enter blog contents here</textarea>
+    <br>
+    <input type="submit">
+</form>
+<br>
+
+</body>
+</html>
