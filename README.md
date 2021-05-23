@@ -8,7 +8,7 @@ If the user does not want to publish the blog, they can click the unpublish butt
 
 <h3>Creating the database</h3>
 The createdb.py file was used to create the database from the schema that is defined in schema.sql. The primary key is automatically created and auto-incremented.
-createdb.py also adds two example entries outside of the application. The database for the application is called "blogs.db".
+createdb.py also adds an example entry outside of the application. The database for the application is called "blogs.db".
 
 <h2> The Blog Application</h2>
 The blog application requires that user logs in, using the session to keep track that the user has logged in to edit the blog posts, delete the blog posts or create new blog posts.

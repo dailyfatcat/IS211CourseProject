@@ -89,7 +89,7 @@ def publish(postID):
 
 @app.route('/update', methods=["POST", "Get"])
 def updatepost():
-    '''Updating the blog post, update the blog posts'''
+    '''Updating the blog post, update the blog posts in database'''
     if not session.get('username'):
         return (redirect(url_for("login")))
     title = request.form.get('title')
